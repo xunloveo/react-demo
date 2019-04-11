@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>定时更新dom</title>
+	<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+	<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+	<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+
+	<script type="text/babel">
+		let myStyle = {color: 'red', textAlign: 'center'}
+
+		class Name extends React.Component {
+			render () {
+				return <h1 style={myStyle}>网站名称：{this.props.name} </h1>
+			}			
+		}
+
+		class Url extends React.Component {
+			render () {
+				return <h1> 网站地址： {this.props.url} </h1>
+			}
+		}
+
+		class Nickname extends React.Component {
+      render () {
+				return <h1> 网址昵称： {this.props.nickname} </h1>
+    	}
+		}
+
+		class App extends React.Component {
+			render () {
+				return (
+					<div>
+						<Name name={this.props.name} />
+						<Url url={this.props.url} />
+						<Nickname nickname={this.props.nickname} />
+					</div>
+				)
+			}
+		}
+
+		ReactDOM.render(
+			<App name={"百度"} url={"http://www.baidu.com"} nickname={"Baidu"} />,
+			document.getElementById('example')
+		)
+	</script>
+</body>
+</html>

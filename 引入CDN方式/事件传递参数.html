@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件传递参数</title>
+	<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+	<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+	<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+
+	<script type="text/babel">
+		class Popper extends React.Component {
+			constructor () {
+				super ()
+				this.state = {name: 'helloworld'}
+			}
+
+			preventPop = (name, event) => {
+				console.log(event)
+				event.preventDefault()
+				alert(name)
+			}
+
+			render () {
+				return (
+					<div>
+						<p>hello</p>
+						/* <a href="https://reactjs.org" onClick={(e) => this.preventPop(this.state.name, e)}>Click</a> */
+						/*<a href="https://reactjs.org" onClick={this.preventPop.bind(this, this.state.name)}>Click</a>*/
+					</div>
+				)
+			}	
+		}
+
+		ReactDOM.render(
+			<Popper />,
+			document.getElementById('example')
+		)
+	</script>
+</body>
+</html>

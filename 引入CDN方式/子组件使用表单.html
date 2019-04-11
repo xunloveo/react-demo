@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>子组件使用表单</title>
+	<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+	<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+	<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+
+	<script type="text/babel">
+		class HelloMessage extends React.Component {
+			constructor (props) {
+				super (props)
+				this.state = {value: '表单与事件'}				
+			}
+
+			handleChange = (event) => {
+				console.log(event)
+				this.setState({value: event.target.value})
+			}
+
+			render () {
+				let value = this.state.value
+				return 	<div>
+									<Content myDataProp={value} 
+										updateStateProp={this.handleChange} />
+								</div>
+			}
+		}
+
+		class Content extends React.Component {
+			render () {
+				return 	<div>
+									<input type="text" value={this.props.myDataProp} onChange={this.props.updateStateProp} />
+									<h4>{this.props.myDataProp}</h4>
+								</div>
+			}
+		}
+
+		ReactDOM.render(
+			<HelloMessage />,
+			document.getElementById('example')
+		)
+	</script>
+</body>
+</html>

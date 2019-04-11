@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件处理</title>
+	<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+	<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+	<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+
+	<script type="text/babel">
+		class Toggle extends React.Component {
+			constructor (props) {
+				super (props)
+
+				this.state = {isToggloOn: true}
+				
+				console.log('th', this)
+				// 为了this 能在回调函数中使用
+				// this.handleClick = this.handleClick.bind(this)
+			}
+
+			/* handleClick () {
+				console.log('ht', this)
+				this.setState(prevState => ({
+					isToggloOn: !prevState.isToggloOn
+				}))
+			} */
+			
+
+			// 为了绑定this
+			handleClick = () => {
+				console.log('ht', this)
+				this.setState(prevState => ({
+					isToggloOn: !prevState.isToggloOn
+				}))
+			}
+
+			render () {
+				return (
+					<button onClick={this.handleClick}>
+						{this.state.isToggloOn ? 'ON' : 'OFF'}
+					</button>
+				)
+			}
+		}
+
+		ReactDOM.render(
+			<Toggle />,
+			document.getElementById('example')
+		)
+	</script>
+</body>
+</html>
